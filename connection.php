@@ -8,8 +8,7 @@
 
   function getConnection() {
     $link = mysqli_connect(__SERVER__, __USER__, __PASS__, __DB__, __PORT__);
-
-    mysqli_set_charset($link, "utf-8");
+    mysqli_set_charset($link, "utf8");
 
     return $link;
   }

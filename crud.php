@@ -9,7 +9,9 @@
 
     if(!mysqli_query($link, $query)) {
       throw new \Exception("Error ao gravar", 1);
+      return false;
     }
+    return true;
   }
 
   function fnListViagens() {
@@ -23,7 +25,6 @@
     while($row = mysqli_fetch_assoc($rs)) {
       array_push($viagens, $row);
     }
-
     return $viagens;
   }
 
@@ -52,12 +53,18 @@
     return $viagens;
   }
 
-  function deleteViagem($id){
+  function fnDeleteViagem($id){
     $link = getConnection();
 
     $query = "delete from tb_viagens where id = {$id}";
 
     mysqli_query($link, $query);
+
+    if(!mysqli_query($link, $query)) {
+      throw new \Exception("Error ao excluir", 1);
+      return false;
+    }
+    return true;
   }
 
   function fnUpdateViagem($id, $pais, $local, $imagem, $descricao) {
@@ -66,4 +73,10 @@
     $query = "update tb_viagens set pais = '{$pais}', local = '{$local}', imagem = '{$imagem}', descricao = '{$descricao}' where id = {$id}";
 
     mysqli_query($link, $query);
+
+    if(!mysqli_query($link, $query)) {
+      throw new \Exception("Error ao atualizar", 1);
+      return false;
+    }
+    return true;
   }

@@ -25,7 +25,6 @@
     } else {
       echo '{"status":500}';
     }
-
   } else if($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $id = json_decode(file_get_contents('php://input'), true);
     if(deleteViagem($id['id'])) {
